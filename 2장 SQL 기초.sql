@@ -167,4 +167,26 @@ insert into tblproduct (prod_no, prod_name, prod_price, prod_stock) values (
 );
 
 select * from tbluser;
+select user_name from tbluser;
+select user_name, user_hp from tbluser;
+select * from tbluser where user_id = 'p102';
+select * from tbluser where user_id = 'p104' or user_id = 'p105';
+select * from tbluser where user_addr = '부산시 금정구';
+select * from tbluser where user_age > 30;
+select * from tbluser where user_hp is null;
+update tbluser set user_age = 42 where user_id = 'p104';
+update tbluser set user_addr = '부산시 진구' where user_id = 'p105';
+delete from tbluser where user_id = 'p103';
+
 select * from tblproduct;
+select prod_name from tblproduct;
+select prod_name, prod_company, prod_price from tblproduct;
+select * from tblproduct where prod_company = 'LG전자';
+select * from tblproduct where prod_company = '삼성전자';
+update tblproduct set 
+					prod_company = '삼성전자',
+                    prod_date = '2024-01-01'
+                    where
+                    prod_no = '1006';
+
+
