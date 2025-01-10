@@ -133,3 +133,36 @@ DELIMITER ;
 
 call proc_test7();
 
+#실습 5-11
+use studydb;
+
+DELIMITER $$
+	CREATE FUNCTION func_test1(_userid VARCHAR(10)) RETURNS INT
+	DETERMINISTIC
+        BEGIN
+			DECLARE total INT;
+			SELECT SUM(sale) INTO total FROM sales WHERE uid = _userid;
+		RETURN total;
+	END $$
+DELIMITER ;
+
+select func_test1('A101');
+
+DELIMITER $$
+CREATE FUNCTION func_test2(_sale INT) RETURNS DOUBLE
+	DETERMINISTIC
+    BEGIN
+		DECLARE bonus DOUBLE;
+			IF (_sale >= 100000) THEN
+			SET bonus = _sale * 0.1;
+			ELSE
+			SET bonus = _sale * 0.05;
+			END IF;
+		RETURN bonus;
+	END $$
+DELIMITER ;
+
+SELECT uid, year, month, sale, func_test2(sale) as bonus FROM sales;
+
+DROP FUNCTION IF EXISTS func_test1;
+DROP FUNCTION IF EXISTS func_test2;
