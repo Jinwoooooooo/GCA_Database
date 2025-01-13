@@ -287,7 +287,7 @@ select orderProduct as '주문 상품번호', sum(orderCount) as '총 주문수�
 select company as '제조업체', count(*) as '제품수', max(price) as '최고가' from product group by company order by '제조업체' asc;
 
 #실습 1-27
-select company as '제조업체', count(*) as '제품수', max(price) as '최고가' from product group by company having '제품수' >= 2;
+select company as '제조업체', count(*) as '제품수', max(price) as '최고가' from product group by company having 제품수 >= 2;
 
 SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
