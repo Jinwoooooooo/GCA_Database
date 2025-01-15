@@ -13,7 +13,7 @@ use college;
 create table student(
 	stdNo varchar(8) primary key,
     stdName varchar(20) not null,
-    stdHp varchar(13) not null,
+    stdHp varchar(13) unique not null,
     stdYear int not null,
     stdAddress varchar(100) default null
 );
@@ -209,7 +209,7 @@ select * from student where stdAddress is null;
 select * from student where stdAddress like '부산시%';
 
 #실습 3-18
-select * from student as a join register as b on a.stdNo = b.regStdNo;
+select * from student as a left join register as b on a.stdNo = b.regStdNo;
 
 #실습 3-19
 select
@@ -312,7 +312,7 @@ from student as a
 join register as b on a.stdNo = b.regStdNo
 join lecture as c on b.regLecNo = c.lecNo
 where regGrade != 'F'
-group by stdNo, stdName;
+group by stdNo;
 
 #실습 3-30
 select 
